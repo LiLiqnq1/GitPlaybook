@@ -176,5 +176,209 @@
     ]
   };
 
-  return { lessons: [lesson1] };
+  const lesson3 = {
+    id: "conflict",
+    index: "03",
+    title: "冲突解决",
+    subtitle: "两边改了同一行，如何合并成一个更好的版本",
+    level: "实战",
+    duration: "约 10 分钟",
+    summary:
+      "模拟 main 与 feature/header 同时修改首页文案。先读懂冲突，再比较两版内容，最后完成合并提交。",
+    objectives: ["读懂合并冲突现场", "比较两版内容并做决策", "完成冲突后的合并提交"],
+    start: {
+      commits: [
+        commit("c0", "chore: 初始化站点", "main", 0, 0),
+        commit("c1", "feat: 改写首页主文案", "feature/header", 1, 1, ["c0"]),
+        commit("c2", "docs: 更新课程介绍", "main", 0, 1, ["c0"])
+      ],
+      branches: [
+        { name: "main", at: "c2", lane: 0 },
+        { name: "feature/header", at: "c1", lane: 1 }
+      ],
+      head: "main",
+      working: null,
+      conflict: null
+    },
+    conflict: {
+      file: "src/data/site.js",
+      ours: "在浏览器里完成分支、合并与冲突解决。",
+      theirs: "用 3 个实验，把 Git 协作练成肌肉记忆。",
+      options: [
+        {
+          id: "both",
+          label: "保留双方，合并成一句",
+          description: "两版信息都重要：既说明练什么，也说明怎么练。",
+          correct: true,
+          working: "src/data/site.js · 已合并双方",
+          output: ["已保留双方信息：用 3 个实验，在浏览器里把 Git 分支、合并与冲突解决练成肌肉记忆。"]
+        },
+        {
+          id: "ours",
+          label: "只保留 HEAD（main）",
+          description: "丢弃 feature/header 的文案改动。",
+          correct: false,
+          feedback: "这样会丢掉队友的文案，冲突并没有真正合并。"
+        },
+        {
+          id: "theirs",
+          label: "只保留 feature/header",
+          description: "用对方版本覆盖 main 上的课程介绍。",
+          correct: false,
+          feedback: "这样会丢掉 main 上刚更新的课程信息，再比较一次两版内容。"
+        }
+      ]
+    },
+    steps: [
+      {
+        id: "merge-header",
+        title: "触发一次真实冲突",
+        detail:
+          "feature/header 和 main 都修改了 src/data/site.js 的同一行。执行合并，看看 Git 会怎么提示。",
+        command: "git merge feature/header",
+        choices: ["git merge feature/header", "git merge main", "git rebase feature/header"],
+        hint: "把 feature/header 合并进当前所在的分支 main。",
+        output: [
+          "Auto-merging src/data/site.js",
+          "CONFLICT (content): Merge conflict in src/data/site.js",
+          "Automatic merge failed; fix conflicts and then commit the result."
+        ],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化站点", "main", 0, 0),
+            commit("c1", "feat: 改写首页主文案", "feature/header", 1, 1, ["c0"]),
+            commit("c2", "docs: 更新课程介绍", "main", 0, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c2", lane: 0 },
+            { name: "feature/header", at: "c1", lane: 1 }
+          ],
+          head: "main",
+          working: null,
+          conflict: {
+            file: "src/data/site.js",
+            resolved: false
+          }
+        }
+      },
+      {
+        id: "inspect-conflict",
+        title: "查看冲突现场",
+        detail: "先别急着改。用 git status 确认哪些文件处于 unmerged 状态。",
+        command: "git status",
+        choices: ["git status", "git add .", "git commit -m \"merge\""],
+        hint: "查看当前工作区与暂存区状态，使用 git status。",
+        output: [
+          "On branch main",
+          "You have unmerged paths.",
+          "  (fix conflicts and run \"git commit\")",
+          "Unmerged paths:",
+          "  both modified:   src/data/site.js"
+        ],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化站点", "main", 0, 0),
+            commit("c1", "feat: 改写首页主文案", "feature/header", 1, 1, ["c0"]),
+            commit("c2", "docs: 更新课程介绍", "main", 0, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c2", lane: 0 },
+            { name: "feature/header", at: "c1", lane: 1 }
+          ],
+          head: "main",
+          working: "src/data/site.js · 冲突已解决",
+          conflict: {
+            file: "src/data/site.js",
+            resolved: true
+          }
+        }
+      },
+      {
+        id: "edit-resolution",
+        title: "合并两版文案",
+        detail: "不要简单二选一。把“练什么”和“怎么练”都保留下来，写成一句通顺的话。",
+        command: "edit src/data/site.js",
+        choices: ["edit src/data/site.js", "git checkout --ours src/data/site.js", "git checkout --theirs src/data/site.js"],
+        hint: "解决冲突需要编辑文件；checkout --ours / --theirs 会直接丢弃一方。",
+        output: ["src/data/site.js 已更新：用 3 个实验，在浏览器里把 Git 分支、合并与冲突解决练成肌肉记忆。"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化站点", "main", 0, 0),
+            commit("c1", "feat: 改写首页主文案", "feature/header", 1, 1, ["c0"]),
+            commit("c2", "docs: 更新课程介绍", "main", 0, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c2", lane: 0 },
+            { name: "feature/header", at: "c1", lane: 1 }
+          ],
+          head: "main",
+          working: "src/data/site.js · 已合并双方",
+          conflict: {
+            file: "src/data/site.js",
+            resolved: true
+          }
+        }
+      },
+      {
+        id: "stage-resolution",
+        title: "把解决结果加入暂存区",
+        detail: "Git 需要你明确标记：这个冲突已经处理完了。",
+        command: "git add src/data/site.js",
+        choices: ["git add src/data/site.js", "git add .", "git commit -m \"merge\""],
+        hint: "只暂存刚刚解决冲突的文件。",
+        output: ["Changes to be committed:", "  modified:   src/data/site.js"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化站点", "main", 0, 0),
+            commit("c1", "feat: 改写首页主文案", "feature/header", 1, 1, ["c0"]),
+            commit("c2", "docs: 更新课程介绍", "main", 0, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c2", lane: 0 },
+            { name: "feature/header", at: "c1", lane: 1 }
+          ],
+          head: "main",
+          working: "src/data/site.js · 已暂存",
+          conflict: {
+            file: "src/data/site.js",
+            resolved: true
+          }
+        }
+      },
+      {
+        id: "commit-merge",
+        title: "完成合并提交",
+        detail:
+          "提交后，Git 会生成一个有两个父提交的 merge commit。冲突解决的结果被永久记录在历史里。",
+        command: "git commit -m \"merge: resolve hero copy conflict\"",
+        choices: [
+          "git commit -m \"merge: resolve hero copy conflict\"",
+          "git commit -m \"fix\"",
+          "git merge --abort"
+        ],
+        hint: "提交信息说明这是一次冲突解决后的合并。",
+        output: [
+          "[main 3c4d5e6] merge: resolve hero copy conflict",
+          " 1 file changed, 1 insertion(+), 1 deletion(-)"
+        ],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化站点", "main", 0, 0),
+            commit("c1", "feat: 改写首页主文案", "feature/header", 1, 1, ["c0"]),
+            commit("c2", "docs: 更新课程介绍", "main", 0, 1, ["c0"]),
+            commit("c3", "merge: resolve hero copy conflict", "main", 0, 2, ["c2", "c1"])
+          ],
+          branches: [
+            { name: "main", at: "c3", lane: 0 },
+            { name: "feature/header", at: "c1", lane: 1 }
+          ],
+          head: "main",
+          working: null,
+          conflict: null
+        }
+      }
+    ]
+  };
+
+  return { lessons: [lesson1, lesson3] };
 });

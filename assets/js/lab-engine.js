@@ -69,7 +69,7 @@
     next.state = clone(step.state);
     next.lastStepId = step.id;
 
-    if (next.state.conflict) {
+    if (next.state.conflict && !next.state.conflict.resolved) {
       next.status = "conflict";
     } else if (next.stepIndex >= lesson.steps.length) {
       next.status = "done";
