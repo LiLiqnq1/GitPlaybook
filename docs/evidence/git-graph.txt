@@ -1,0 +1,23 @@
+﻿*   3a17e7e (HEAD -> docs/history-evidence, main) merge: polish project README
+|\  
+| * 0995d5e docs: add project screenshot and document index
+|/  
+*   89a92d3 merge: fix resolved conflict caption
+|\  
+| * 7324d9a fix: hide resolved conflict caption
+|/  
+*   4a93da5 merge: add community documentation
+|\  
+| * 1199baf (feature/community-docs) docs: add contribution, teaching and community guides
+|/  
+*   740eed9 merge: add automated tests
+|\  
+| * 271b99a (feature/test-suite) test: cover lesson progression and conflict resolution
+|/  
+*   1456ae9 merge: bring parallel lab into main
+|\  
+| * 048dd58 (feature/parallel-lab) feat: add parallel development lab
+* | 5f6aae0 feat: add merge conflict lab
+|/  
+* be19f94 chore: normalize line endings
+* fa774bb chore: initialize GitPlaybook interactive lab
