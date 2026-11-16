@@ -176,6 +176,208 @@
     ]
   };
 
+  const lesson2 = {
+    id: "parallel-dev",
+    index: "02",
+    title: "并行开发与合并提交",
+    subtitle: "让两条功能线同时前进，再合成一条历史",
+    level: "进阶",
+    duration: "约 8 分钟",
+    summary:
+      "模拟两位开发者在不同分支上并行提交，再把两条历史合并。理解 merge commit 为什么有两个父提交。",
+    objectives: ["在两条分支上分别提交", "识别分叉历史", "完成一次非快进合并"],
+    start: {
+      commits: [commit("c0", "chore: 初始化项目", "main", 0, 0)],
+      branches: [
+        { name: "main", at: "c0", lane: 0 },
+        { name: "feature/ui", at: "c0", lane: 1 },
+        { name: "feature/api", at: "c0", lane: 2 }
+      ],
+      head: "main",
+      working: null,
+      conflict: null
+    },
+    steps: [
+      {
+        id: "switch-ui",
+        title: "进入 UI 功能分支",
+        detail: "feature/ui 已经由队友创建。先切换过去，完成实验卡片的界面改动。",
+        command: "git switch feature/ui",
+        choices: ["git switch feature/ui", "git switch -c feature/ui", "git merge feature/ui"],
+        hint: "分支已经存在，直接 switch，不要再加 -c。",
+        output: ["Switched to branch 'feature/ui'"],
+        state: {
+          commits: [commit("c0", "chore: 初始化项目", "main", 0, 0)],
+          branches: [
+            { name: "main", at: "c0", lane: 0 },
+            { name: "feature/ui", at: "c0", lane: 1 },
+            { name: "feature/api", at: "c0", lane: 2 }
+          ],
+          head: "feature/ui",
+          working: null,
+          conflict: null
+        }
+      },
+      {
+        id: "commit-ui",
+        title: "提交 UI 改动",
+        detail: "把实验卡片组件提交到 feature/ui。现在这条分支比 main 多走了一步。",
+        command: "git commit -m \"feat: add lesson cards\"",
+        choices: [
+          "git commit -m \"feat: add lesson cards\"",
+          "git commit -m \"feat: add API\"",
+          "git merge feature/ui"
+        ],
+        hint: "提交信息要描述这次 UI 改动。",
+        output: ["[feature/ui 4d5e6f7] feat: add lesson cards", " 2 files changed, 86 insertions(+)"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化项目", "main", 0, 0),
+            commit("c1", "feat: add lesson cards", "feature/ui", 1, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c0", lane: 0 },
+            { name: "feature/ui", at: "c1", lane: 1 },
+            { name: "feature/api", at: "c0", lane: 2 }
+          ],
+          head: "feature/ui",
+          working: null,
+          conflict: null
+        }
+      },
+      {
+        id: "switch-api",
+        title: "切换到 API 分支",
+        detail: "队友在 feature/api 上开发进度接口。切过去，接力完成第二个提交。",
+        command: "git switch feature/api",
+        choices: ["git switch feature/api", "git switch feature/ui", "git merge feature/api"],
+        hint: "切换到另一条已经存在的功能分支。",
+        output: ["Switched to branch 'feature/api'"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化项目", "main", 0, 0),
+            commit("c1", "feat: add lesson cards", "feature/ui", 1, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c0", lane: 0 },
+            { name: "feature/ui", at: "c1", lane: 1 },
+            { name: "feature/api", at: "c0", lane: 2 }
+          ],
+          head: "feature/api",
+          working: null,
+          conflict: null
+        }
+      },
+      {
+        id: "commit-api",
+        title: "提交 API 改动",
+        detail: "进度接口完成。此时两条功能分支都从 c0 分叉，各自有了新提交。",
+        command: "git commit -m \"feat: persist lab progress\"",
+        choices: [
+          "git commit -m \"feat: persist lab progress\"",
+          "git commit -m \"docs: update readme\"",
+          "git switch main"
+        ],
+        hint: "这次提交的是进度持久化接口。",
+        output: ["[feature/api 8a9b0c1] feat: persist lab progress", " 1 file changed, 34 insertions(+)"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化项目", "main", 0, 0),
+            commit("c1", "feat: add lesson cards", "feature/ui", 1, 1, ["c0"]),
+            commit("c2", "feat: persist lab progress", "feature/api", 2, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c0", lane: 0 },
+            { name: "feature/ui", at: "c1", lane: 1 },
+            { name: "feature/api", at: "c2", lane: 2 }
+          ],
+          head: "feature/api",
+          working: null,
+          conflict: null
+        }
+      },
+      {
+        id: "back-main",
+        title: "回到主线准备合并",
+        detail: "两条功能线都完成了。回到 main，把它们依次合并进来。",
+        command: "git switch main",
+        choices: ["git switch main", "git merge main", "git switch -c main"],
+        hint: "main 已存在，直接切换。",
+        output: ["Switched to branch 'main'"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化项目", "main", 0, 0),
+            commit("c1", "feat: add lesson cards", "feature/ui", 1, 1, ["c0"]),
+            commit("c2", "feat: persist lab progress", "feature/api", 2, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c0", lane: 0 },
+            { name: "feature/ui", at: "c1", lane: 1 },
+            { name: "feature/api", at: "c2", lane: 2 }
+          ],
+          head: "main",
+          working: null,
+          conflict: null
+        }
+      },
+      {
+        id: "merge-ui",
+        title: "先合并 UI 分支",
+        detail:
+          "main 仍停在 c0，feature/ui 只领先一步，因此可以快进。main 现在指向 UI 的最新提交。",
+        command: "git merge feature/ui",
+        choices: ["git merge feature/ui", "git merge feature/api", "git rebase feature/ui"],
+        hint: "先合并 UI 分支，让 main 获得实验卡片。",
+        output: ["Updating 9f0e1d2..4d5e6f7", "Fast-forward", " 2 files changed, 86 insertions(+)"],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化项目", "main", 0, 0),
+            commit("c1", "feat: add lesson cards", "main", 0, 1, ["c0"]),
+            commit("c2", "feat: persist lab progress", "feature/api", 2, 1, ["c0"])
+          ],
+          branches: [
+            { name: "main", at: "c1", lane: 0 },
+            { name: "feature/ui", at: "c1", lane: 0 },
+            { name: "feature/api", at: "c2", lane: 2 }
+          ],
+          head: "main",
+          working: null,
+          conflict: null
+        }
+      },
+      {
+        id: "merge-api",
+        title: "合并 API 分支",
+        detail:
+          "这次 main 和 feature/api 都有各自的新提交，无法快进。Git 会创建一个有两个父提交的 merge commit。",
+        command: "git merge feature/api",
+        choices: ["git merge feature/api", "git merge feature/ui", "git reset --hard c0"],
+        hint: "把 API 分支合并进当前 main。",
+        output: [
+          "Merge made by the 'ort' strategy.",
+          " src/api/progress.js | 34 +++++++++++++++++",
+          " 1 file changed, 34 insertions(+)"
+        ],
+        state: {
+          commits: [
+            commit("c0", "chore: 初始化项目", "main", 0, 0),
+            commit("c1", "feat: add lesson cards", "main", 0, 1, ["c0"]),
+            commit("c2", "feat: persist lab progress", "feature/api", 2, 1, ["c0"]),
+            commit("c3", "merge: feature/api into main", "main", 0, 2, ["c1", "c2"])
+          ],
+          branches: [
+            { name: "main", at: "c3", lane: 0 },
+            { name: "feature/ui", at: "c1", lane: 0 },
+            { name: "feature/api", at: "c2", lane: 2 }
+          ],
+          head: "main",
+          working: null,
+          conflict: null
+        }
+      }
+    ]
+  };
+
   const lesson3 = {
     id: "conflict",
     index: "03",
@@ -380,5 +582,5 @@
     ]
   };
 
-  return { lessons: [lesson1, lesson3] };
+  return { lessons: [lesson1, lesson2, lesson3] };
 });
