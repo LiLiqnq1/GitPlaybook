@@ -267,9 +267,10 @@
         ${branchLabels}
         ${working}
       </svg>`;
-    els.graphCaption.textContent = state.conflict
-      ? "红色节点表示合并冲突；解决后即可继续提交。"
-      : "分支标签跟随提交移动；HEAD 指向你当前所在的分支。";
+    els.graphCaption.textContent =
+      state.conflict && !state.conflict.resolved
+        ? "红色节点表示合并冲突；解决后即可继续提交。"
+        : "分支标签跟随提交移动；HEAD 指向你当前所在的分支。";
   }
 
   function renderStep() {
