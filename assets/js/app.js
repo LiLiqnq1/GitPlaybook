@@ -1,11 +1,11 @@
-/* global GitPlaybookLessons, LabEngine, SITE_COPY */
+﻿/* global GitPlaybookLessons, LabEngine, SITE_COPY */
 (function () {
   "use strict";
 
   const { lessons } = window.GitPlaybookLessons;
   const ENGINE = window.LabEngine;
   const STORAGE_KEY = "gitplaybook.completed.v1";
-  const REPO_URL = "https://github.com/your-github-name/GitPlaybook";
+  const REPO_URL = "https://github.com/LiLiqnq1/GitPlaybook";
 
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
@@ -80,7 +80,7 @@
   }
 
   function setRepoLinks() {
-    const isPlaceholder = REPO_URL.includes("your-github-name");
+    const isPlaceholder = REPO_URL.includes("LiLiqnq1");
     els.repoLinks.forEach((link) => {
       link.href = isPlaceholder ? "#lab" : REPO_URL;
       link.title = isPlaceholder ? "仓库地址将在发布后替换" : "打开 GitHub 仓库";
@@ -278,7 +278,7 @@
     const step = ENGINE.getCurrentStep(session, lesson);
 
     if (!step) {
-      const repoHref = REPO_URL.includes("your-github-name") ? "#lab" : REPO_URL;
+      const repoHref = REPO_URL.includes("LiLiqnq1") ? "#lab" : REPO_URL;
       els.stepKicker.textContent = "COMPLETE";
       els.stepTitle.textContent = "实验完成，去真实仓库练一次";
       els.stepDetail.textContent =

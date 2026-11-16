@@ -1,17 +1,17 @@
-# 贡献指南
+﻿# 贡献指南
 
 感谢你愿意帮助 GitPlaybook。这个项目希望成为“第一次参与开源”也可以完成的地方。
 
 ## 开始之前
 
-- 先搜索已有的 [Issue](https://github.com/your-github-name/GitPlaybook/issues)，避免重复。
+- 先搜索已有的 [Issue](https://github.com/LiLiqnq1/GitPlaybook/issues)，避免重复。
 - 大功能或课程结构调整，请先开 Issue 说明目标和方案，再动手。
 - 小的拼写、样式和文档修复可以直接提交 PR。
 
 ## 本地开发
 
 ```bash
-git clone https://github.com/<your-github-username>/GitPlaybook.git
+git clone https://github.com/LiLiqnq1/GitPlaybook.git
 cd GitPlaybook
 python -m http.server 4173
 ```

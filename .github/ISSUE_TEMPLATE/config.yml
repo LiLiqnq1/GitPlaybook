@@ -1,8 +1,8 @@
-blank_issues_enabled: false
+﻿blank_issues_enabled: false
 contact_links:
   - name: 课程使用与教学讨论
-    url: https://github.com/your-github-name/GitPlaybook/discussions
+    url: https://github.com/LiLiqnq1/GitPlaybook/discussions
     about: 分享课堂使用经验、课程脚本改造或教学建议。
   - name: 安全问题
-    url: https://github.com/your-github-name/GitPlaybook/security/policy
+    url: https://github.com/LiLiqnq1/GitPlaybook/security/policy
     about: 请不要在公开 Issue 中披露安全漏洞。

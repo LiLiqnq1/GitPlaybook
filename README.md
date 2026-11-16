@@ -1,4 +1,4 @@
-# GitPlaybook
+﻿# GitPlaybook
 
 > 把 Git 分支、合并与冲突解决，变成三个可以反复练习的浏览器实验。
 
@@ -30,7 +30,7 @@ GitPlaybook 把这三个高频场景拆成渐进式实验：
 项目是纯静态站点，不需要构建，也没有运行时依赖。
 
 ```bash
-git clone https://github.com/<your-github-username>/GitPlaybook.git
+git clone https://github.com/LiLiqnq1/GitPlaybook.git
 cd GitPlaybook
 python -m http.server 4173
 ```
@@ -130,7 +130,7 @@ main
 
 ## 参与贡献
 
-欢迎提交 Issue 和 Pull Request。适合第一次参与开源的任务会标记为 [`good first issue`](https://github.com/<your-github-username>/GitPlaybook/labels/good%20first%20issue)。
+欢迎提交 Issue 和 Pull Request。适合第一次参与开源的任务会标记为 [`good first issue`](https://github.com/LiLiqnq1/GitPlaybook/labels/good%20first%20issue)。
 
 - 提交缺陷前，请先搜索现有 Issue。
 - 新功能请先开 Issue 对齐目标，避免大改动返工。

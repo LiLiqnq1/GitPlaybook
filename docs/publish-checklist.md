@@ -1,4 +1,4 @@
-# 发布清单
+﻿# 发布清单
 
 这份清单把项目从本地仓库发布到 GitHub，并收集课程报告所需的截图。
 
@@ -13,10 +13,10 @@
 
 ## 2. 关联远程并推送
 
-把 `<your-github-username>` 替换为你的用户名：
+把 `LiLiqnq1` 替换为你的用户名：
 
 ```bash
-git remote add origin https://github.com/<your-github-username>/GitPlaybook.git
+git remote add origin https://github.com/LiLiqnq1/GitPlaybook.git
 git push -u origin main
 git push origin --all
 git push origin --tags
@@ -40,7 +40,7 @@ Settings → Pages → Build and deployment：
 等待 1–2 分钟，访问：
 
 ```text
-https://<your-github-username>.github.io/GitPlaybook/
+https://LiLiqnq1.github.io/GitPlaybook/
 ```
 
 如果页面 404，检查仓库是否公开、Pages 是否启用、文件名是否为 `index.html`。
@@ -51,8 +51,8 @@ https://<your-github-username>.github.io/GitPlaybook/
 
 | 占位符 | 替换为 |
 | --- | --- |
-| `your-github-name` | 你的 GitHub 用户名 |
-| `https://github.com/your-github-name/GitPlaybook` | 真实仓库地址 |
+| `LiLiqnq1` | 你的 GitHub 用户名 |
+| `https://github.com/LiLiqnq1/GitPlaybook` | 真实仓库地址 |
 | 报告封面中的“指导教师” | 任课教师姓名 |
 
 涉及文件：
