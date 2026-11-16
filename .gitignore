@@ -1,0 +1,7 @@
+node_modules/
+.browser-profile/
+.DS_Store
+Thumbs.db
+*.log
+report_assets/
+docs/report/

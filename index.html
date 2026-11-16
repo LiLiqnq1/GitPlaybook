@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="GitPlaybook：在浏览器里练习 Git 分支、合并与冲突解决的开源互动实验室。"
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <title>GitPlaybook · 把 Git 分支玩成一场闯关</title>
+    <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#lab">跳到实验区</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="GitPlaybook 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M12 11v18M12 20h10a7 7 0 0 0 7-7V9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            <circle cx="12" cy="9" r="3.4" fill="currentColor" />
+            <circle cx="12" cy="31" r="3.4" fill="currentColor" />
+            <circle cx="29" cy="8" r="3.4" fill="currentColor" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>GitPlaybook</strong>
+          <small>OPEN SOURCE LAB</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#lab">实验</a>
+        <a href="#why">设计</a>
+        <a href="#open-source">开源</a>
+      </nav>
+      <a class="header-repo" href="#lab" data-repo-link>
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.82-2.14-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.14 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+        </svg>
+        <span>GitHub 仓库</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow">OPEN SOURCE · GIT LEARNING LAB</p>
+          <h1 id="hero-title">把 Git 分支，玩成一场闯关</h1>
+          <p class="hero-lede" id="hero-subtitle">
+            在浏览器里完成分支、合并与冲突解决。无需安装，打开就能练。
+          </p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#lab" id="hero-primary">开始第一个实验</a>
+            <a class="button button--quiet" href="#why" id="hero-secondary">看看怎么玩</a>
+          </div>
+          <dl class="hero-stats" aria-label="项目数据">
+            <div><dt id="stat-value-0">3</dt><dd id="stat-label-0">个渐进式实验</dd></div>
+            <div><dt id="stat-value-1">0</dt><dd id="stat-label-1">行安装命令</dd></div>
+            <div><dt id="stat-value-2">MIT</dt><dd id="stat-label-2">开源许可证</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="terminal-window">
+            <div class="terminal-bar">
+              <span></span><span></span><span></span>
+              <em>gitplaybook — zsh</em>
+            </div>
+            <div class="terminal-body">
+              <p><b>❯</b> git switch -c feature/readme</p>
+              <p class="ok">Switched to a new branch 'feature/readme'</p>
+              <p><b>❯</b> git commit -m "docs: add quick start"</p>
+              <p class="ok">[feature/readme 1a2b3c4] docs: add quick start</p>
+              <p><b>❯</b> git switch main &amp;&amp; git merge feature/readme</p>
+              <p class="ok">Fast-forward · 1 file changed, 12 insertions(+)</p>
+              <p class="cursor"><b>❯</b> <span></span></p>
+            </div>
+          </div>
+          <div class="floating-card floating-card--graph">
+            <span class="mini-label">BRANCH MAP</span>
+            <svg viewBox="0 0 210 74">
+              <path d="M18 50h48c20 0 22-30 44-30h74" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" />
+              <path d="M18 50h174" fill="none" stroke="#0f766e" stroke-width="2.5" />
+              <circle cx="18" cy="50" r="6" fill="#0f766e" />
+              <circle cx="110" cy="20" r="6" fill="#2563eb" />
+              <circle cx="192" cy="50" r="6" fill="#f05133" />
+              <text x="18" y="69" text-anchor="middle">c0</text>
+              <text x="110" y="12" text-anchor="middle" fill="#2563eb">feature</text>
+              <text x="192" y="69" text-anchor="middle" fill="#f05133">HEAD</text>
+            </svg>
+          </div>
+          <div class="floating-card floating-card--badge">
+            <span class="pulse-dot"></span>
+            <div><strong>冲突已解决</strong><small>merge commit ready</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lab-section" id="lab">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">INTERACTIVE LAB</p>
+            <h2>三个实验，把抽象概念变成手感</h2>
+          </div>
+          <div class="section-note">
+            <span class="live-dot"></span>
+            本地沙盒 · 可反复重置
+          </div>
+        </div>
+
+        <div class="lab-shell">
+          <aside class="lab-sidebar" aria-label="实验列表">
+            <div class="sidebar-heading">
+              <span>实验路径</span>
+              <span class="sidebar-count">03 LABS</span>
+            </div>
+            <div id="lesson-list" class="lesson-list"></div>
+            <div class="sidebar-progress">
+              <div class="progress-meta"><span>当前进度</span><strong id="progress-label">0%</strong></div>
+              <div class="progress-track"><span id="progress-bar"></span></div>
+            </div>
+            <button class="reset-button" type="button" id="reset-lab">
+              <span aria-hidden="true">↺</span> 重置当前实验
+            </button>
+          </aside>
+
+          <section class="graph-panel" aria-label="提交图">
+            <div class="panel-heading">
+              <div>
+                <span class="panel-kicker">COMMIT GRAPH</span>
+                <h3 id="lesson-title">分支与快进合并</h3>
+              </div>
+              <span class="status-pill" id="lab-status" data-state="active">实验中</span>
+            </div>
+            <p class="lesson-subtitle" id="lesson-subtitle">从一条主线，长出你的第一条功能分支</p>
+            <div class="graph-stage" id="graph-canvas"></div>
+            <p class="graph-caption" id="graph-caption"></p>
+            <div class="lesson-meta-row">
+              <span id="lesson-meta">入门 · 约 6 分钟 · 6 个步骤</span>
+              <ul id="lesson-objectives" class="objective-list"></ul>
+            </div>
+          </section>
+
+          <aside class="coach-panel" aria-label="操作指导">
+            <div class="coach-head">
+              <span class="coach-avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 8.5 3.5 12 7 15.5M17 8.5 20.5 12 17 15.5M14 5l-4 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+              <div><strong>操作台</strong><small>跟着提示执行命令</small></div>
+            </div>
+            <div class="step-card">
+              <p class="step-kicker" id="step-kicker">STEP 01 / 06</p>
+              <h3 id="step-title">创建并切换到功能分支</h3>
+              <p id="step-detail">从 main 创建一个叫 feature/readme 的分支，并立即切换过去。</p>
+              <div class="command-list" id="command-list"></div>
+            </div>
+            <div class="conflict-panel" id="conflict-panel" hidden></div>
+            <div class="terminal-card">
+              <div class="terminal-card-head"><span></span> 终端输出</div>
+              <div class="terminal-output" id="terminal-output" aria-live="polite"></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="why-section" id="why">
+        <div class="section-heading section-heading--compact">
+          <div>
+            <p class="section-kicker">WHY IT WORKS</p>
+            <h2>不是看会，是练会</h2>
+          </div>
+        </div>
+        <div class="why-grid">
+          <article>
+            <span class="why-index">01</span>
+            <h3>先看见，再理解</h3>
+            <p>每次命令都会改变提交图。分支、HEAD 与合并提交不再是文档里的名词，而是你眼前移动的节点。</p>
+          </article>
+          <article>
+            <span class="why-index">02</span>
+            <h3>在安全环境里犯错</h3>
+            <p>冲突不会弄坏任何东西。你可以反复重置、比较两版内容，再决定保留哪一版。</p>
+          </article>
+          <article>
+            <span class="why-index">03</span>
+            <h3>为真实协作做准备</h3>
+            <p>三个实验对应开源协作的高频动作：开分支、并行开发、解决冲突并完成合并提交。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="open-source" id="open-source">
+        <div class="open-source-copy">
+          <p class="section-kicker">OPEN BY DEFAULT</p>
+          <h2>课程脚本、界面和文档全部开源</h2>
+          <p>采用 MIT 许可证，课堂可以直接 fork、改造成自己的实训材料。欢迎用 Issue 提交新的冲突场景。</p>
+        </div>
+        <div class="doc-links">
+          <a href="README.md"><span>README</span><small>项目说明与快速开始</small></a>
+          <a href="LICENSE"><span>LICENSE</span><small>MIT · 自由使用与修改</small></a>
+          <a href="CONTRIBUTING.md"><span>CONTRIBUTING</span><small>分支规范与 PR 清单</small></a>
+          <a href="docs/design.md"><span>DESIGN DOC</span><small>状态模型与设计取舍</small></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand"><span class="brand-mark brand-mark--small" aria-hidden="true">⑂</span> GitPlaybook</div>
+      <p>用开源的方式，讲清楚开源协作。</p>
+      <p class="footer-meta">MIT License · 2026 · Built for the Open Source Culture course</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="src/data/site.js"></script>
+    <script src="assets/js/lessons.js"></script>
+    <script src="assets/js/lab-engine.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

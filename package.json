@@ -1,0 +1,25 @@
+{
+  "name": "gitplaybook",
+  "version": "0.1.0",
+  "description": "A zero-dependency, browser-based lab for learning Git branching, merging and conflict resolution.",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "node --test tests",
+    "serve": "python -m http.server 4173"
+  },
+  "keywords": [
+    "git",
+    "open-source",
+    "education",
+    "interactive",
+    "conflict-resolution"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-github-name/GitPlaybook.git"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
