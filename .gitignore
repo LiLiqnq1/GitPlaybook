@@ -1,5 +1,6 @@
 node_modules/
 .browser-profile/
+.browser-profile-*/
 .DS_Store
 Thumbs.db
 *.log
