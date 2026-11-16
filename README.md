@@ -11,6 +11,8 @@ GitPlaybook 是一个面向开源新人的互动教学项目。它不要求你�
 
 项目本身也按照开源协作的方式开发和维护：有公开的课程脚本、许可证、贡献指南、Issue 模板、Pull Request 模板和持续集成。
 
+![GitPlaybook 首页](docs/assets/hero.png)
+
 ## 为什么做这个项目
 
 很多 Git 入门材料能讲清楚 `git branch` 的定义，却很难让人建立“分支只是一个指向提交的指针”的直觉；冲突解决更是常常被一句“手动合并”带过。学习者真正需要的，是一个可以犯错、可以重来、可以看见每一步结果的沙盒。
@@ -75,6 +77,17 @@ gitplaybook/
 ├─ SECURITY.md
 └─ LICENSE
 ```
+
+## 文档
+
+| 文档 | 内容 |
+| --- | --- |
+| [设计说明](docs/design.md) | 状态模型、提交图布局、交互取舍与测试策略 |
+| [教学设计与课程脚本](docs/teaching-design.md) | 学习者画像、认知阶梯、反馈设计与课堂用法 |
+| [分支管理与协作流程](docs/branching.md) | 分支模型、合并策略与一次真实冲突的解决记录 |
+| [社区运营与互动指南](docs/community.md) | Issue 规范、响应节奏与邀请同学参与的步骤 |
+| [路线图](docs/roadmap.md) | 从 v0.1 到 v1.0 的里程碑 |
+| [发布清单](docs/publish-checklist.md) | 推送到 GitHub、开启 Pages、收集截图的检查表 |
 
 ## 设计取舍
 
