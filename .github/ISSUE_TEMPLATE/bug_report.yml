@@ -1,0 +1,52 @@
+name: Bug report
+description: 报告一个可复现的问题
+title: "[Bug] "
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请尽量提供可复现步骤，这能显著缩短修复时间。
+  - type: input
+    id: environment
+    attributes:
+      label: 环境
+      description: 浏览器、操作系统、是否使用 GitHub Pages
+      placeholder: "Chrome 131 / Windows 11 / GitHub Pages"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开 ...
+        2. 选择实验 ...
+        3. 点击 ...
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 如果有报错，请粘贴控制台信息
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图或录屏
+      description: 可直接拖拽图片到这里
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已经搜索过现有 Issue
+          required: true
+        - label: 我使用的是最新版本
+          required: true
